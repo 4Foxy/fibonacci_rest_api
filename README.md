@@ -24,14 +24,18 @@ Test using curl command
 
 `curl -i -X GET "http://localhost:5000/fibonacci/10"`
 
-invalid path parameter - large number
+invalid path parameter with number greater than upper boundary - returns 400
 
 `curl -i -X GET "http://localhost:5000/fibonacci/10000"`
 
-invalid path parameter - negative number
+invalid path parameter with negative number - returns 400
 
 `curl -i -X GET "http://localhost:5000/fibonacci/-10"`
 
-invalid http method
+invalid http method - returns 405
 
 `curl -i -X POST "http://localhost:5000/fibonacci/10000"`
+
+invalid path - returns 404
+
+`curl -i -X POST "http://localhost:5000/fibonacci/bad/bad"`
