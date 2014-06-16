@@ -4,32 +4,32 @@ from sequence_generators import fibonacci
 
 class FibonacciTest(TestCase):
     def test_generate_sequence_with_size_0_returns_empty_list(self):
-        list = fibonacci.generate_sequence(0)
-        self.assertEqual(len(list), 0)
+        sequence = fibonacci.generate_sequence(0)
+        self.assertEqual(len(sequence), 0)
 
     def test_generate_sequence_with_size_1_returns_list_containing_0(self):
-        list = fibonacci.generate_sequence(1)
-        self.assertEqual(len(list), 1)
-        self.assertEqual(list[0], 0)
+        sequence = fibonacci.generate_sequence(1)
+        self.assertEqual(len(sequence), 1)
+        self.assertEqual(sequence[0], 0)
 
     def test_generate_sequence_with_size_2_returns_expected_list(self):
-        list = fibonacci.generate_sequence(2)
-        self.assertEqual(len(list), 2)
-        self.assertEqual(list, [0, 1])
+        sequence = fibonacci.generate_sequence(2)
+        self.assertEqual(len(sequence), 2)
+        self.assertEqual(sequence, [0, 1])
 
     def test_generate_sequence_with_size_5_returns_expected_list(self):
-        list = fibonacci.generate_sequence(5)
-        self.assertEqual(len(list), 5)
-        self.assertEqual(list, [0, 1, 1, 2, 3])
+        sequence = fibonacci.generate_sequence(5)
+        self.assertEqual(len(sequence), 5)
+        self.assertEqual(sequence, [0, 1, 1, 2, 3])
 
     def test_generate_sequence_with_size_20_returns_expected_list(self):
-        list = fibonacci.generate_sequence(20)
-        self.assertEqual(len(list), 20)
-        self.assertEqual(list,
+        sequence = fibonacci.generate_sequence(20)
+        self.assertEqual(len(sequence), 20)
+        self.assertEqual(sequence,
                          [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233,
                           377, 610, 987, 1597, 2584, 4181])
 
     def test_generate_sequence_with_size_1000_returns_list_1000_elements(self):
-        list = fibonacci.generate_sequence(1000)
-        self.assertEqual(len(list), 1000)
+        sequence = fibonacci.generate_sequence(1000)
+        self.assertEqual(len(sequence), 1000)
 
