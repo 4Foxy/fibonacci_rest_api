@@ -18,7 +18,7 @@ To run the application
 
 Test in your browser
 
-http://localhost:5000/fibonacci/10
+[http://localhost:5000/fibonacci/10](http://localhost:5000/fibonacci/10)
 
 Test using curl command
 
