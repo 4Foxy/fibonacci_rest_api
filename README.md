@@ -39,3 +39,7 @@ invalid http method - returns 405
 invalid path - returns 404
 
 `curl -i -X POST "http://localhost:5000/fibonacci/bad/bad"`
+
+Running tests on different Python versions (py27, py34)
+
+`tox`
