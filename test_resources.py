@@ -1,14 +1,12 @@
 from unittest import TestCase
 from flask import json
-
-import mock
-
-import resources
+from mock import patch
+from resources import app
 
 
 class TestWebResource(TestCase):
     def setUp(self):
-        self.client = resources.app.test_client()
+        self.client = app.test_client()
 
     def test_size_is_negative_number_returns_400(self):
         response = self.client.get('/fibonacci/-1')
@@ -18,7 +16,7 @@ class TestWebResource(TestCase):
         response = self.client.get('/fibonacci/-1')
         error_message = self.retrieve_error_message(response)
         self.assertEqual('Size must be a positive integer. Actual -1'
-                         ,error_message)
+                         , error_message)
 
     def test_invalid_string_in_path_returns_400(self):
         response = self.client.get('/fibonacci/bad')
@@ -28,7 +26,7 @@ class TestWebResource(TestCase):
         response = self.client.get('/fibonacci/bad')
         error_message = self.retrieve_error_message(response)
         self.assertEqual('Size must be a positive integer. Actual bad'
-                         ,error_message)
+                         , error_message)
 
     def test_size_greater_than_upper_boundary_returns_400(self):
         response = self.client.get('fibonacci/1001')
@@ -39,7 +37,7 @@ class TestWebResource(TestCase):
         error_message = self.retrieve_error_message(response)
         self.assertEqual(
             'Size must be a positive integer <= to 1000. Actual 1001'
-                         ,error_message)
+            , error_message)
 
     def test_invalid_path_returns_404(self):
         response = self.client.get('fibonacci/test/1223')
@@ -57,7 +55,7 @@ class TestWebResource(TestCase):
         response = self.client.get('fibonacci/0')
         response_data = json.loads(response.data)
         fibonacci_list = response_data.get("fibonacci")
-        self.assertEqual(len(fibonacci_list),0)
+        self.assertEqual(len(fibonacci_list), 0)
 
     def test_size_is_5_returns_200_with_correct_list(self):
         response = self.client.get('fibonacci/5')
@@ -78,7 +76,7 @@ class TestWebResource(TestCase):
         response = self.client.post('fibonacci/0')
         self.assertEqual(response.content_type, 'application/json')
 
-    @mock.patch('sequence_generators.fibonacci.generate_sequence')
+    @patch('sequence_generators.fibonacci.generate_sequence')
     def test_get_calls_fibonacci_generator(self, mock_generator):
         self.client.get('fibonacci/0')
         mock_generator.assert_called_with(0)
